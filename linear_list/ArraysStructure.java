@@ -201,6 +201,36 @@ public class ArraysStructure {
         return  reHead;
     }
 
+	public static Node reverseList(Node head) {
+    if (head == null || head.next == null) {
+      return head;
+    }
+    Node reHead = null;// 定义新链表头结点
+    while (head != null) {
+      Node cur = head.next;// 记录下一个节点
+      head.next = reHead;// 将rehead节点连接到head节点上
+      reHead = head;// 让rehead指向head
+      head = cur;// 将head指向下一个节点
+    }
+    return reHead;
+  }
+  
+  
+  /**
+   * 递归反转链表
+   * 
+   * @param head
+   * @return
+   */
+  public static Node reverseList2(Node head) {
+    if (head == null || head.next == null)
+      return head;
+    Node rehead = reverseList2(head.next);
+    head.next.next = head;// 将头节点置于末端
+    head.next = null;// 防止链表循环
+    return rehead;
+  }
+  
     /**
      * 从结尾出开始打印链表
      */
